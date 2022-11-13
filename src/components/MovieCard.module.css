@@ -37,6 +37,10 @@
     font-weight: bold;
 }
 
-.title:hover {
-    overflow: visible;
+.durationAndYear {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 0.65rem;
+    padding: 0.1rem;
 }
