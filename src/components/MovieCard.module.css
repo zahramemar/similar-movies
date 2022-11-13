@@ -1,6 +1,7 @@
 .card {
     position: relative;
     aspect-ratio: 1.33;
+    overflow: hidden;
 }
 
 .image {
@@ -14,10 +15,11 @@
     padding: 0.2rem;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
     position: absolute;
     width: 100%;
-    height: 4rem;
-    bottom: -2rem;
+    height: 3rem;
+    bottom: -1rem;
     transition: all 500ms ease;
 }
 
@@ -31,7 +33,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     display: block;
-    width: 100%;
+    max-width: 100%;
+    font-weight: bold;
 }
 
 .title:hover {
