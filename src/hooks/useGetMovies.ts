@@ -14,7 +14,7 @@ type ArrElement<ArrType> = ArrType extends readonly (infer ElementType)[]
 
 const processData = (data: Awaited<ReturnType<typeof getPage>>): Movie[] => {
     const {templates, products} = data.blocks[0];
-    const imageTemplate = templates.find(t => t.type === 'image')!.href;
+    const imageTemplate = "https://api.lorem.space/image/movie?w=240&h=320&title={title}"; // This was ugly so I replaced it: templates.find(t => t.type === 'image')!.href;
 
     const fromProduct = (prod: ArrElement<typeof products>): Movie => ({
         imageSrc: imageTemplate.replace('{title}', encodeURIComponent(prod.title)),
