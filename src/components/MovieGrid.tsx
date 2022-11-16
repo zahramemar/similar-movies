@@ -1,15 +1,12 @@
 import styles from "./MovieGrid.module.css";
 import {MovieCard} from "./MovieCard";
-import {useGetMovies} from "../hooks/useGetMovies";
+import {Movie} from "../hooks/useGetMovies";
 
-export const MovieGrid = () => {
-    const {data: movies, isError, isLoading} = useGetMovies();
+type Props = {
+    movies: Movie[];
+}
 
-    if (isLoading) return <>Loading...</>;
-
-    if (isError) return <>Error</>;
-
-    return <div className={styles.container}>
+export const MovieGrid = ({ movies }: Props) =>
+    <div className={styles.container}>
         {movies?.map(movie => <MovieCard key={movie.title} {...movie} />)}
     </div>
-}

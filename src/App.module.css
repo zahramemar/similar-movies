@@ -1,0 +1,12 @@
+.appContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: stretch;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.header {
+    align-self: center;
+}
