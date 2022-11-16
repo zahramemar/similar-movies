@@ -6,7 +6,7 @@ type ArrElement<ArrType> = ArrType extends readonly (infer ElementType)[]
     : never;
 
 type ProductsType = MovieResponseType["blocks"][number]["products"];
-type Product = ArrElement<ProductsType>;
+export type Product = ArrElement<ProductsType>;
 
 export type Movie = {
     id: string;
