@@ -15,18 +15,15 @@ type Props = Movie & {
     selected: boolean;
 }
 
-export const MovieCard = ({imageSrc, title, duration, year, onClick, selected}: Props) => {
-    if (selected) console.log("selected")
-    return (
-        <div className={movieCard({state: selected ? "selected" : null})} onClick={onClick}>
-            <img className={styles.image} src={imageSrc} alt={title}/>
-            <div className={styles.info}>
-                <div className={styles.title}>{title}</div>
-                <div className={styles.durationAndYear}>
-                    <div>{year}</div>
-                    <div>{duration}</div>
-                </div>
+export const MovieCard = ({imageSrc, title, duration, year, onClick, selected}: Props) => (
+    <div className={movieCard({state: selected ? "selected" : null})} onClick={onClick}>
+        <img className={styles.image} src={imageSrc} alt={title}/>
+        <div className={styles.info}>
+            <div className={styles.title}>{title}</div>
+            <div className={styles.durationAndYear}>
+                <div>{year}</div>
+                <div>{duration}</div>
             </div>
         </div>
-    );
-}
+    </div>
+);

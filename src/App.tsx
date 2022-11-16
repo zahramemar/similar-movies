@@ -25,7 +25,11 @@ function App() {
 		<div className={styles.appContainer}>
 			<h1 className={styles.header}>Are These Similar?</h1>
 			{selected.length === 2
-				? <MovieComparison left={movies.find(m => m.id === selected[0])!} right={movies.find(m => m.id === selected[1])!}/>
+				? <MovieComparison
+					left={movies.find(m => m.id === selected[0])!}
+					right={movies.find(m => m.id === selected[1])!}
+					onClear={() => setSelected([])}
+				/>
 				: null
 			}
 			<MovieGrid movies={movies} selectedMovies={selected} onMovieClick={handleMovieClick} />
