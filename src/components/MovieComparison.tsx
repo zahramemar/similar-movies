@@ -1,6 +1,5 @@
 import styles from "./MovieComparison.module.css";
-import {Movie} from "../hooks/useGetMovies";
-import {Fragment} from "react";
+import {Movie, Product} from "../hooks/useGetMovies";
 
 const MovieBox = ({movie}: {movie: Movie}) => (
     <div className={styles.movieDiv}>
@@ -8,22 +7,40 @@ const MovieBox = ({movie}: {movie: Movie}) => (
     </div>
 );
 
+type ComparisonCriteria = {
+    test: (a: Product, b: Product) => boolean;
+    title: (prod: Product) => string;
+}
+
+const comparisonCriteria: ComparisonCriteria[] = [
+    {
+        title: prod => `Both are produced at ${prod.production.year}`,
+        test: (a, b) => a.production.year === b.production.year,
+    },
+    {
+        title: prod => `Both have parental rating of ${prod.parentalRating}`,
+        test: (a, b) => a.parentalRating === b.parentalRating,
+    }
+]
+
 type Props = {
     left: Movie;
     right: Movie;
     onClear: () => void;
 }
 
-const ComparisonInfo = ({onClear}: Props) => {
-    const similarities = [<>Movie Rating: 8/10</>];
+const ComparisonInfo = ({left, right, onClear}: Props) => {
+    const similarities = comparisonCriteria
+        .filter(c => c.test(left.data, right.data))
+        .map(c => c.title(left.data));
 
     return (
         <div className={styles.comparisonInfo}>
-            <h3>YES</h3>
+            <h3>{similarities.length === 2 ? "YES" : "NO"}</h3>
             <button type={"button"} onClick={onClear}>clear selection</button>
             <div>
                 {similarities.map((similarity, idx) => (
-                    <Fragment key={idx}>{similarity}</Fragment>
+                    <div key={idx}>{similarity}</div>
                 ))}
             </div>
         </div>
